@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="profile-header">
+        <div class="content-container">
+            <h1>Your Profile</h1>
+            {% for user in users %}
+                <div class="user-card">
+                    <img src="{% static 'profile/pic.jpg'%}" alt="Profile Picture" class="profile-picture" >
+                    <p>Username: {{ user.username }}</p>
+                    <p>Email: {{ user.email }}</p>
+                    <p>Member since: {{ user.date_joined|date:"F j, Y" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

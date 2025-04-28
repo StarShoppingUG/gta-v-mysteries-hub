@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="GTA V Mysteries Hub - Explore Hidden Mysteries and Cheat Codes">
+    <title>{% block title %}GTA V Mysteries{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="nav-logo">
+                <img src="{% static 'logo.png'%}" class="logo">
+                <div class="logo-text">
+    <span>GTA V</span>
+    <span>MYSTERIES</span>
+</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'browse' %}">Browse & Cheats</a></li>
+                <li><a href="{% url 'create' %}" >Submit Theory</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'about' %}" >About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>GTA V Mysteries Hub</h3>
+                <p>Explore Hidden Mysteries and Codes</p>
+                
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="quick-access-list"> 
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'browse' %}">Browse & Cheats</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {% now "Y" %} GTA V Mysteries Hub. | Powered by GhostTeam.</p>
+        </div>
+    </footer>
+    <script src="{% static 'scripts.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="about-header">
+        <div class="content-container">
+            <h1>{{ title }}</h1>
+            <p>{{ page_description }}</p>
+        </div>
+    </section>
+
+    <section class="content-container">
+        <div class="mission-section">
+            <h2>Our Missions</h2>
+            <div class="mission-content">
+                <p>{{ mission_statement }}</p>
+                <div class="mission-highlights">
+                    <div class="highlight-card">
+                        <h3>Explore</h3>
+                        <p>Discover hidden secrets and Easter eggs in GTA V</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>Share</h3>
+                        <p>Contribute your theories and findings</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>Learn</h3>
+                        <p>Explore the list of cheat codes to learn something new</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2>Our Team</h2>
+            <div class="developers-grid">
+                {% for developer in developers %}
+                    <div class="developer-card">
+                        <div class="developer-image">
+                            <img src="{{ developer.image.url }}" alt="{{ developer.name }}">
+                        </div>
+                        <div class="developer-info">
+                            <h3>{{ developer.name }}</h3>
+                            <p class="role">{{ developer.role }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

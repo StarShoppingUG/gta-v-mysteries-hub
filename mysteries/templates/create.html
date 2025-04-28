@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="create-header">
+        <div class="content-container">
+            <h1>{{ title }}</h1>
+            <p>{{ page_description }}</p>
+        </div>
+    </section>
+
+    <section class="content-container">
+        <div class="submission-form">
+            <div class="form-container">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="theory-title">Theory Title *</label>
+                        <input type="text" id="theory-title" name="title" required 
+                               placeholder="Enter your theory title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="theory-description">Description *</label>
+                        <textarea id="theory-description" name="description" required
+                                placeholder="Describe your theory in detail..."
+                                rows="6"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="theory-location">Location in Game</label>
+                        <input type="text" id="theory-location" name="location"
+                               placeholder="Where can this be found in GTA V?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="theory-image">Supporting Image</label>
+                        <input type="file" id="theory-image" name="image" 
+                               accept="image/*">
+                        <p class="file-hint">Max file size: 5MB. Supported formats: JPG, PNG</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="theory-tags">Tags</label>
+                        <input type="text" id="theory-tags" name="tags"
+                               placeholder="e.g., Mount Chiliad, UFO, Easter Egg">
+                        <p class="tag-hint">Separate tags with commas</p>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Submit Theory</button>
+                        <button type="reset" class="reset-btn">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

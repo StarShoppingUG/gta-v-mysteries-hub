@@ -103,6 +103,7 @@ body::before {
     gap: 3rem;
     margin: 0;
     padding: 0;
+
     align-items: center;
 }
 
@@ -480,9 +481,11 @@ p {
     background-attachment: fixed;
     background-position: center;
     background-color: rgba(18, 18, 18, 0.95);
+    background-color: #71e871;
     background-blend-mode: overlay;
     position: relative;
     overflow: hidden;
+
 }
 
 .browse-container::after {
@@ -501,12 +504,10 @@ p {
     opacity: 0.1;
 }
 
-/* Keep the global styles and other necessary styles... */
 
-/* Browse Page Styles - Only keep these */
 .browse-header {
     width: 100%;
-    padding: 4rem 0;
+    padding: 0rem 0;
 }
 
 .content-container {
@@ -514,7 +515,9 @@ p {
     margin: 0 auto;
     padding: 0 2rem;
 }
-
+#cheats{
+    display: none;
+}
 /* Team Section Styles */
 .team-section {
     padding: 4rem 0;
@@ -679,7 +682,7 @@ p {
 .quick-access-card p {
     color: var(--text-color);
     margin-bottom: 1.5rem;
-    font-size: 1rem; /* About 18px, up from 0.9rem */
+    font-size: 1rem; 
 }
 
 .quick-access-card .cta-button {

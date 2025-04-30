@@ -4,13 +4,21 @@
 {% block content %}
     <section class="browse-header">
         <div class="content-container">
-            <h1>{{ title }}</h1>
-            <p>{{ page_description }}</p>
+            <h1>Browse Mysteries & Cheats</h1>
+            <p>Explore GTA V mystries and cheat codes</p>
         </div>
     </section>
 
     <section class="content-container">
-        <!-- Mysteries Content will go here -->
-        <img src="{% static 'images/mysteries/default-mystery.png' %}">
+         <div class="browse-buttons-container">
+            <button class="cta-button" id="mysteries-btn">Mysteries</button>
+            <button class="cta-button"id="cheat-btn">Cheat codes</button>
+         </div>
+         <section id="mysteries">
+            <img src="{% static 'images/mysteries/default-mystery.png' %}">
+         </section>
+         <section id="cheats">
+            <div>Cheats coming soon</div>
+         </section>
     </section>
 {% endblock %}

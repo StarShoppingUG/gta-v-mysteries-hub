@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-zx7e2*-$hlg6))e!6)scoxuy&ey*0!ru!q=txer(^*(#jt@+(a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://gta-v-mysteries-hub.onrender.com'
+]
 
 
 # Application definition

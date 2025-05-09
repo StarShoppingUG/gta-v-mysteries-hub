@@ -316,7 +316,6 @@ body {
     gap: 2rem;
 }
 .mystery-card img{
-    min-width: 400px;
     height: 40%;
     max-height: 300px;;
     box-shadow: var(--subtle-glow);

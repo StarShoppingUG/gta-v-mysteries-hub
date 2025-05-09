@@ -29,7 +29,6 @@ def create(request:HttpRequest):
         form = TheoryForm(request.POST, request.FILES)
         if form.is_valid():
             theory = form.save(commit=False)
-            theory.author = request.user.username
             theory.save()
             return redirect('profile')
     else:

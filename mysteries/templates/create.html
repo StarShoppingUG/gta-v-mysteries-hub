@@ -6,7 +6,7 @@
             <div class="form-container">
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    
+                    <p class="file-hint">Fields marked with * are required</p>
                     <div class="form-group">
                         <label for="{{form.title.id_for_label}}">Theory Title *</label>
                         {{form.title}}
@@ -21,7 +21,7 @@
                         <label for="{{form.location.id_for_label}}">Location in Game *</label>
                         {{form.location}}
                     </div>
-                    <p class="file-hint">Fields marked with * are required</p>
+                    
                     <div class="form-group">
                         <label for="{{form.image.id_for_label}}">Supporting Image</label>
                         {{form.image}}
@@ -29,9 +29,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="{{form.tags.id_for_label}}">Tags</label>
-                        {{form.tags}}
-                        <p class="tag-hint">Separate tags with commas</p>
+                        <label for="{{form.author.id_for_label}}">Author *</label>
+                        {{form.author}}
                     </div>
 
                     <div class="form-actions">

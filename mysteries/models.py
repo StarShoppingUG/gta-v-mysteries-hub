@@ -13,7 +13,6 @@ class Theory(models.Model):
     author = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)
-    likes = models.IntegerField(default=0)
 
     class Meta:
         verbose_name_plural = "Theories"

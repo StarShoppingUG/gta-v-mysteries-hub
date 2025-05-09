@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: my-django-app
+    env: python
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn yourprojectname.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: yourprojectname.settings
+      - key: SECRET_KEY
+        value: django-insecure-zx7e2*-$hlg6))e!6)scoxuy&ey*0!ru!q=txer(^*(#jt@+(a
+      - key: ALLOWED_HOSTS
+        value: gta-v-mysteries-hub.onrender.com

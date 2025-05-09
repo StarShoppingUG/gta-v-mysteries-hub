@@ -1,22 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
+
     HighlightSelected();
     ToggleMysteriesCheats();
-
+    FilterPlatformCheats();
+    DeleteMystery();
+    NavigateMystery();
+    ReadMore();
+    NavigateMysteriesCheats();
 
 });
  //toggle mysteries and cheat codes
 function ToggleMysteriesCheats(){
-    const mysteriesBtn = document.getElementById();
-    const cheatsBtn = document.getElementById();
+    const mysteriesBtn = document.getElementById("mysteries-btn");
+    const cheatsBtn = document.getElementById("cheats-btn");
+    if (mysteriesBtn){
     mysteriesBtn.addEventListener("click", ()=>{
-        document.querySelector("#mysteries").style.display = "block";
-        document.querySelector("#cheats").style.display = "none";
+        document.querySelector("#mysteries-container").style.display = "block";
+        document.querySelector("#cheats-container").style.display = "none";
+        mysteriesBtn.classList.add("mysteries-cheats-selected");
+        cheatsBtn.classList.remove("mysteries-cheats-selected");
     })
+    }
+    if(cheatsBtn){
     cheatsBtn.addEventListener("click", ()=>{
-        document.querySelector("#cheats").style.display = "block";
-        document.querySelector("#mysteries").style.display = "none";
+        document.querySelector("#cheats-container").style.display = "block";
+        document.querySelector("#mysteries-container").style.display = "none";
+        mysteriesBtn.classList.remove("mysteries-cheats-selected");
+        cheatsBtn.classList.add("mysteries-cheats-selected");
     })
+    }
 }
 //Highlight selected page.
 function HighlightSelected(){
@@ -31,4 +43,84 @@ function HighlightSelected(){
          }
       
      });
+}
+//Display cheats for specific platforms.
+function FilterPlatformCheats(){
+    const platform = document.getElementById("platform-choice")
+    
+    if(platform){
+    platform.addEventListener("change", async ()=>{
+        const response = await fetch(`/filter-cheats/?platform=${platform.value}`);
+        const result = await response.text()
+        document.getElementById("cheats-list").innerHTML = result
+    } )
+    }
+    
+}
+//Get CSRFtoken
+function GetCSRFToken(){
+    return document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+}
+//Delete mystery
+function DeleteMystery(){
+    const deleteBtns = document.querySelectorAll(".delete-mystery");
+    deleteBtns.forEach(button => {
+        button.addEventListener("click", function (){
+            if (!confirm("Are you sure you want to delete this mystery?")) return;
+            const mystery = this.closest(".mystery-card");
+            const mysteryId = mystery.getAttribute("data-id");
+            fetch(`/delete-mystery/${mysteryId}`, {
+                method: 'POST',
+                headers : {
+                    'X-CSRFToken' : GetCSRFToken(),
+                    'Content-Type' : 'application/json'}, }).then(response => {
+                        if(response.ok){
+                            mystery.remove();
+                        }
+                        else{
+                            alert("Delete failed")
+                        }
+                    })
+                 }) })
+                       
+}
+
+function NavigateMystery(){
+    document.querySelectorAll(".view-mystery").forEach(
+        btn => {
+            btn.addEventListener("click", function(){
+                const id = this.dataset.id
+                window.location.href = `/browse/#mystery-${id}`;
+            })
+        }
+    )
+}
+function ReadMore(){
+    document.querySelectorAll(".more-text-btn").forEach(btn =>{
+        btn.addEventListener("click", function(){
+            const id = this.dataset.id
+            const desc = document.getElementById(`desc-${id}`);
+            const moreText = desc.querySelector(".more-text");
+            if(moreText.style.display === 'none'){
+                moreText.style.display = "inline";
+                this.textContent = "Read Less"
+            }
+            else{
+                moreText.style.display = "none";
+                this.textContent = "Read More";
+            }
+        })
+    })
+}
+function NavigateMysteriesCheats(){
+    const hash = window.location.hash
+    const cheatSection = document.querySelector("#cheats-container");
+    const mysteriesSection = document.querySelector("#mysteries-container");
+    if (hash === "#cheats"){
+        cheatSection.style.display = "block";
+        mysteriesSection.style.display = "none";
+        document.getElementById("mysteries-btn").classList.remove("mysteries-cheats-selected");
+        document.getElementById("cheats-btn").classList.add("mysteries-cheats-selected");
+
+    }
 }

@@ -1,24 +1,90 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="browse-container">
+  <section class="browse-header">
+    <div class="content-container">
+      <h1>Browse Mysteries & Cheats</h1>
+      <p>Explore GTA V mystries and cheat codes</p>
+    </div>
+  </section>
 
-{% block content %}
-    <section class="browse-header">
-        <div class="content-container">
-            <h1>Browse Mysteries & Cheats</h1>
-            <p>Explore GTA V mystries and cheat codes</p>
+  <section class="content-container">
+    <div class="browse-buttons-container">
+      <button class="cta-button mysteries-cheats-selected" id="mysteries-btn">
+        Mysteries
+      </button>
+      <button class="cta-button" id="cheats-btn">Cheat codes</button>
+    </div>
+
+    <section id="mysteries-container">
+      <h2>Featured mysteries</h2>
+      <section class="mystery-section">
+        {% for mystery in mysteries %}
+        <div class="mystery-card">
+            <h2>{{ mystery.title }}</h2>
+            <div class="mystery-details">
+            <img src="{{ mystery.image.url }}" alt="Mystery Image" class="mystery-image">
+            <p class="description" id="desc-{{mystery.id}}">{{ mystery.description|slice:":300" }}<span class="more-text" style="display:none">
+              {{mystery.description|slice:"300:"|safe}}</span>
+              {% if mystery.description|length > 300 %}
+              <button class="more-text-btn cta-button" data-id="{{mystery.id}}">Read More</button>
+              {% endif %}
+            </p>
+            <p><b>Location:</b> <span class="location">{{mystery.location}}</span></p>
+          </div>
         </div>
+        {% empty %}
+        <h2>Thoeries comming soon...</h2>
+        {% endfor %}
+      </section>
+      <div class="com-mysteries-header">
+        <h2>Community mysteries</h2>
+        <p>This section contains mysteries that were submitted by the community 
+          and approved by our team.</p>
+      </div>
+      <section class="mystery-section">
+        {% for mystery in com_mysteries %}
+        <div class="mystery-card" id= "mystery-{{mystery.id}}">
+          <h2>{{ mystery.title }}</h2>
+          <div class="mystery-details">
+          <img src="{{ mystery.image.url }}" alt="Mystery Image" class="mystery-image">
+          <p class="description" id="desc-{{mystery.id}}">{{ mystery.description|slice:":300" }}<span class="more-text" style="display:none">
+            {{mystery.description|slice:"300:"|safe}}</span>
+            {% if mystery.description|length > 300 %}
+            <button class="more-text-btn cta-button" data-id="{{mystery.id}}">Read More</button>
+            {% endif %}
+          </p>
+          
+          <p><b>Location:</b> <span class="location">{{mystery.location}}</span></p>
+        </div>
+          <p><b>Submitted by:</b> <span class="location">{{mystery.author}}</span></p>
+        
+        </div>
+        {% empty %}
+        <h3>No approved community thoeries</h3>
+        <div id="submit-first">
+          <a href="{% url 'create' %}" class="cta-button">Submit Your first mystery</a>
+      </div>
+        {% endfor %}
+      </section>
     </section>
 
-    <section class="content-container">
-         <div class="browse-buttons-container">
-            <button class="cta-button" id="mysteries-btn">Mysteries</button>
-            <button class="cta-button"id="cheat-btn">Cheat codes</button>
-         </div>
-         <section id="mysteries">
-            <img src="{% static 'images/mysteries/default-mystery.png' %}">
-         </section>
-         <section id="cheats">
-            <div>Cheats coming soon</div>
-         </section>
+    <section id="cheats-container">
+      <h3>Choose a platform:</h3>
+      <select id="platform-choice">
+        <option value="ps">PlayStation</option>
+        <option value="pc">PC</option>
+        <option value="xbox">Xbox</option>
+      </select>
+
+      <ul id="cheats-list">
+        {% for cheat in cheats %}
+        <li id="cheat-codes">
+          <div>{{cheat.code}}</div>
+          <i>{{cheat.description}}</i>
+        </li>
+        {% endfor %}
+      </ul>
     </section>
+  </section>
+</div>
 {% endblock %}

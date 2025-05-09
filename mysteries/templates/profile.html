@@ -2,17 +2,54 @@
 {% load static %}
 
 {% block content %}
-    <section class="profile-header">
-        <div class="content-container">
-            <h1>Your Profile</h1>
-            {% for user in users %}
-                <div class="user-card">
-                    <img src="{% static 'profile/pic.jpg'%}" alt="Profile Picture" class="profile-picture" >
-                    <p>Username: {{ user.username }}</p>
-                    <p>Email: {{ user.email }}</p>
-                    <p>Member since: {{ user.date_joined|date:"F j, Y" }}</p>
-                </div>
-            {% endfor %}
-        </div>
+<section class="profile-container">
+    <section class="profile-card">
+        <img src="{% static 'images/logo.png' %}" alt="Profile Picture" class="profile-picture">
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Member since: {{ user.date_joined|date:"F j, Y" }}</p>
     </section>
+    </div>
+    <h2>Your Mysteries</h2>
+    <div class="user-mystery-section">
+        {% for mystery in mysteries %}
+        <div class="mystery-card" data-id= "{{mystery.id}}">
+            {% if mystery.is_approved %}
+            <div class="badge-content">
+                <div class="status-badge approved">approved</div>
+                <div>Your mystery is visible to the community</div>
+            </div>
+        {% else %}
+            <div class="badge-content">
+                <div class="status-badge pending">pending approval</div>
+                <div>Your mystery is not yet visible to the community</div>
+            </div>
+        {% endif %}
+                <h2>{{ mystery.title }}</h2>
+                <div class="mystery-details">
+                <img src="{{ mystery.image.url }}" alt="Mystery Image" class="mystery-image">
+                </div>
+            <div class="user-mystery-btns">
+                {% if mystery.is_approved %}
+                    <div class="view-mystery cta-button" data-id="{{mystery.id}}">View Mystery</div>
+                {% endif %}
+                <div class="edit-mystery cta-button">
+                    <a href="{% url 'edit_mystery' mystery.id %}">Edit</a>
+                </div>
+                <div class="delete-mystery reset-btn">Delete</div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-mystery">
+        <p>You haven't submitted any mysteries.</p>
+        <div class="cta-button submit-first">
+          <a href="{% url 'create' %}" >Submit Your first mystery</a>
+      </div>
+        </div>
+
+        {% endfor %}
+        </div>
+    </div>
+</section>
+
 {% endblock %}

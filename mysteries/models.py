@@ -1,16 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.utils import timezone
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 class Theory(models.Model):
+    category = models.CharField(max_length=20, choices=[
+            ('team', 'Team'),
+            ('community', 'Community')
+        ], default='community')
     title = models.CharField(max_length=200)
     description = models.TextField()
-    location = models.CharField(max_length=100, blank=True)
-    image = models.ImageField(upload_to='theories/', blank=True, null=True)
+    location = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='theories/', default='theories/default.png')
     tags = models.CharField(max_length=200, blank=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)
     likes = models.IntegerField(default=0)
@@ -22,7 +22,6 @@ class Theory(models.Model):
         return self.title
 
 class CheatCode(models.Model):
-    title = models.CharField(max_length=100)
     code = models.CharField(max_length=100)
     platform = models.CharField(max_length=20, choices=[
         ('pc', 'PC'),
@@ -33,7 +32,7 @@ class CheatCode(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.title} ({self.platform})"
+        return f"{self.code} ({self.description})"
 
 
 class Developer(models.Model):

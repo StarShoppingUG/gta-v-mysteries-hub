@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
 from django.contrib.auth.models import User
 from .forms import TheoryForm
-from .models import Theory, Developer
+from .models import Theory, Developer, CheatCode
+from django.http import JsonResponse, HttpResponseNotAllowed
 
 def home(request: HttpRequest):
     context = {
@@ -12,43 +13,71 @@ def home(request: HttpRequest):
     }
     return render(request, 'home.html', context)
 
-def browse(request):
-    mysteries = Theory.objects.all().order_by('-created_at')
+def browse(request:HttpRequest):
+    mysteries = Theory.objects.filter(category='team').order_by('-created_at')
+    com_mysteries = Theory.objects.filter(category = 'community', is_approved = True).order_by('-created_at')
+    cheats = CheatCode.objects.filter(platform = "ps")
     context = {
-        'title': 'Browse Mysteries & Cheats',
-        'page_description': 'Explore GTA V mysteries and cheat codes',
-        'mysteries': mysteries,
-        'cheats': {
-            'pc': [],
-            'xbox': [],
-            'ps': []
-        }
-    }
+        'cheats' : cheats,
+        'mysteries' : mysteries,
+        'com_mysteries' : com_mysteries
+        }   
     return render(request, 'browse.html', context)
 
-def create(request):
+def create(request:HttpRequest):
     if request.method == 'POST':
         form = TheoryForm(request.POST, request.FILES)
         if form.is_valid():
             theory = form.save(commit=False)
-            theory.author = request.user
+            theory.author = request.user.username
             theory.save()
             return redirect('profile')
     else:
         form = TheoryForm()
     return render(request, 'create.html', {'form': form})
 
-def profile(request):
-    users = User.objects.all()
+def profile(request:HttpRequest):
+    user = User.objects.first()
+    mysteries = Theory.objects.filter(author = user.username)
     context = {
-        'title': 'User Profiles',
-        'users': users
+        'user': user,
+        'mysteries': mysteries
     }
     return render(request, 'profile.html', context)
 
-def about(request):
+def about(request:HttpRequest):
     developers = Developer.objects.all()
     context = {
         'developers': developers,
     }
     return render(request, 'about.html', context)
+
+def filter_cheats(request:HttpRequest):
+    platform = request.GET.get("platform")
+    cheats = CheatCode.objects.filter(platform = platform)
+    context = {"cheats": cheats}
+    return render(request, "platform-cheats.html", context)
+
+
+def delete_mystery(request:HttpRequest, id:int):
+    if request.method == 'POST':
+        try:
+            mystery = Theory.objects.get(pk=id)
+            mystery.delete()
+            return JsonResponse({"success" : True})
+        except mystery.DoesNotExist:
+            return JsonResponse({"success": False, "error": "Not found"}, status=404)
+
+    return HttpResponseNotAllowed(['POST'])
+
+def edit_mystery(request:HttpRequest, id:int):
+    mystery = get_object_or_404(Theory, pk=id)
+    if request.method == 'POST':
+        form = TheoryForm(request.POST, request.FILES, instance= mystery)
+        if form.is_valid():
+            mystery.is_approved = False
+            form.save()
+            return redirect("profile")
+    else:
+        form = TheoryForm(instance=mystery)
+    return render(request, "create.html", {'form' : form})

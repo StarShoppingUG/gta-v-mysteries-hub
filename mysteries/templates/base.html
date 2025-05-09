@@ -3,16 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{csrf_token}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="GTA V Mysteries Hub - Explore Hidden Mysteries and Cheat Codes">
-    <title>{% block title %}GTA V Mysteries{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>GTA V Mysteries</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}?v=1.0">
 </head>
 <body>
     <header>
         <nav class="main-nav">
             <div class="nav-logo">
-                <img src="{% static 'logo.png'%}" class="logo">
+                <img src="{% static 'images/logo.png'%}" class="logo">
                 <div class="logo-text">
     <span>GTA V</span>
     <span>MYSTERIES</span>
@@ -21,7 +22,7 @@
             <ul class="nav-links">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'browse' %}">Mysteries & Cheats</a></li>
-                <li><a href="{% url 'create' %}" >Submit Theory</a></li>
+                <li><a href="{% url 'create' %}" >Submit Mystery</a></li>
                 <li><a href="{% url 'profile' %}">Profile</a></li>
                 <li><a href="{% url 'about' %}" >About</a></li>
             </ul>
@@ -53,41 +54,8 @@
             <p>&copy; {% now "Y" %} GTA V Mysteries Hub. | Powered by GhostTeam.</p>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <script src="{% static 'scripts.js' %}">
     
-            HighlightSelected();
-            ToggleMysteriesCheats();
-        
-        
-        });
-         //toggle mysteries and cheat codes
-        function ToggleMysteriesCheats(){
-            const mysteriesBtn = document.getElementById("mysteries-btn");
-            const cheatsBtn = document.getElementById("cheat-btn");
-            mysteriesBtn.addEventListener("click", ()=>{
-                document.querySelector("#mysteries").style.display = "block";
-                document.querySelector("#cheats").style.display = "none";
-            })
-            cheatsBtn.addEventListener("click", ()=>{
-                document.querySelector("#cheats").style.display = "block";
-                document.querySelector("#mysteries").style.display = "none";
-            })
-        }
-        //Highlight selected page.
-        function HighlightSelected(){
-             // Get all navigation links
-             const navLinks = document.querySelectorAll('.nav-links a');
-             const currentPath = window.location.pathname;
-         
-             // Add active class to current page link
-             navLinks.forEach(link => {
-                 if (link.getAttribute('href') === currentPath) {
-                     link.classList.add('active');
-                 }
-              
-             });
-        }
     </script>
 </body>
 </html>

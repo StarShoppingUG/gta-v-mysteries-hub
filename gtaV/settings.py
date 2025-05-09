@@ -24,10 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zx7e2*-$hlg6))e!6)scoxuy&ey*0!ru!q=txer(^*(#jt@+(a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    'gta-v-mysteries-hub.onrender.com'
+    'gta-v-mysteries-hub.onrender.com',
+    'localhost',
+    '127.0.0.1',
 ]
 
 

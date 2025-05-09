@@ -736,6 +736,9 @@ a:not(.nav-links a):not(.cta-button):hover::after {
 }
 /* Responsive Design */
 @media (max-width: 968px) {
+    .logo-text{
+        
+    }
     .nav-links {
         flex-direction: column;
         gap: 1rem;

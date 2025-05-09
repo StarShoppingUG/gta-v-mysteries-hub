@@ -1,28 +1,29 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block content %}
-    <section class="hero">
-        <div class="hero-content">
-            <h1>{{ hero_text }}</h1>
-            <p class="hero-description">{{ page_description }}</p>
-            <div class="cta-buttons">
-                <a href="{% url 'browse' %}" class="cta-button">Browse Mysteries</a>
-                <a href="{% url 'create' %}" class="cta-button">Submit Theory</a>
-            </div>
+{% extends "base.html" %} {% load static %} {% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>{{ hero_text }}</h1>
+        <p class="hero-description">{{ page_description }}</p>
+        <div class="cta-buttons">
+            <a href="{% url 'browse' %}" class="cta-button">Browse Mysteries</a>
+            <a href="{% url 'create' %}" class="cta-button">Submit Theory</a>
         </div>
-    </section>
-    <div class="home-content-container">
+    </div>
+</section>
+<div class="home-content-container">
     <section class="featured-mysteries">
         <h2>Featured Mysteries</h2>
         <div class="home-mystery-grid">
             <div class="home-card">
                 <h3>Mount Chiliad Mystery</h3>
-                <p>Uncover the secrets behind the mysterious mural atop Mount Chiliad.</p>
+                <p>
+                    Uncover the secrets behind the mysterious mural atop Mount Chiliad.
+                </p>
             </div>
             <div class="home-card">
                 <h3>Alien Easter Eggs</h3>
-                <p>Explore various UFO sightings and alien references across Los Santos.</p>
+                <p>
+                    Explore various UFO sightings and alien references across Los Santos.
+                </p>
             </div>
             <div class="home-card">
                 <h3>Ghost Stories</h3>
@@ -46,5 +47,5 @@
             </div>
         </div>
     </section>
-    </div>
+</div>
 {% endblock %}

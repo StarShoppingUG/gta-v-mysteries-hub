@@ -23,8 +23,8 @@
             <h2>{{ mystery.title }}</h2>
             <div class="mystery-details">
             <img src="{{ mystery.image.url }}" alt="Mystery Image" class="mystery-image">
-            <p class="description" id="desc-{{mystery.id}}">{{ mystery.description|slice:":300" }}<span class="more-text" style="display:none">
-              {{mystery.description|slice:"300:"|safe}}</span>
+            <p class="description" id="desc-{{mystery.id}}">
+              {{ mystery.description|slice:":300" }}<span class="more-text" style="display:none">{{mystery.description|slice:"300:"|safe}}</span>
               {% if mystery.description|length > 300 %}
               <button class="more-text-btn cta-button" data-id="{{mystery.id}}">Read More</button>
               {% endif %}
@@ -47,8 +47,7 @@
           <h2>{{ mystery.title }}</h2>
           <div class="mystery-details">
           <img src="{{ mystery.image.url }}" alt="Mystery Image" class="mystery-image">
-          <p class="description" id="desc-{{mystery.id}}">{{ mystery.description|slice:":300" }}<span class="more-text" style="display:none">
-            {{mystery.description|slice:"300:"|safe}}</span>
+          <p class="description" id="desc-{{mystery.id}}">{{ mystery.description|slice:":300" }}<span class="more-text" style="display:none">{{mystery.description|slice:"300:"|safe}}</span>
             {% if mystery.description|length > 300 %}
             <button class="more-text-btn cta-button" data-id="{{mystery.id}}">Read More</button>
             {% endif %}

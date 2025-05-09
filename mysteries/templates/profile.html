@@ -3,6 +3,7 @@
 
 {% block content %}
 <section class="profile-container">
+    <h2 class="profile-h2">Your profile</h2>
     <section class="profile-card">
         <img src="{% static 'images/logo.png' %}" alt="Profile Picture" class="profile-picture">
         <p>Username: {{ user.username }}</p>
@@ -10,7 +11,7 @@
         <p>Member since: {{ user.date_joined|date:"F j, Y" }}</p>
     </section>
     </div>
-    <h2>Your Mysteries</h2>
+    <h2 class="profile-h2">Your Mysteries</h2>
     <div class="user-mystery-section">
         {% for mystery in mysteries %}
         <div class="mystery-card" data-id= "{{mystery.id}}">
@@ -42,9 +43,7 @@
         {% empty %}
         <div class="empty-mystery">
         <p>You haven't submitted any mysteries.</p>
-        <div class="cta-button submit-first">
-          <a href="{% url 'create' %}" >Submit Your first mystery</a>
-      </div>
+        <a href="{% url 'create' %}" class="cta-button submit-first">Submit Your first mystery</a>
         </div>
 
         {% endfor %}

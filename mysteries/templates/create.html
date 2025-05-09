@@ -6,11 +6,12 @@
             <div class="form-container">
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    
                     <div class="form-group">
                         <label for="{{form.title.id_for_label}}">Theory Title *</label>
                         {{form.title}}
                     </div>
-
+                    
                     <div class="form-group">
                         <label for= "{{form.description.id_for_label}}">Description *</label>
                         {{form.description}}
@@ -20,7 +21,7 @@
                         <label for="{{form.location.id_for_label}}">Location in Game *</label>
                         {{form.location}}
                     </div>
-
+                    <p class="file-hint">Fields marked with * are required</p>
                     <div class="form-group">
                         <label for="{{form.image.id_for_label}}">Supporting Image</label>
                         {{form.image}}

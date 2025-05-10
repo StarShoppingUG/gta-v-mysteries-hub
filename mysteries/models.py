@@ -9,7 +9,7 @@ class Theory(models.Model):
     description = models.TextField()
     location = models.CharField(max_length=100)
     image = models.ImageField(upload_to='theories/', default='theories/default.png')
-    tags = models.CharField(max_length=200, blank=True)
+    username = models.CharField(max_length=100, blank=True)
     author = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)

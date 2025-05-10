@@ -14,7 +14,7 @@
     <h2 class="profile-h2">Your Mysteries</h2>
     <div class="user-mystery-section">
         {% for mystery in mysteries %}
-        <div class="mystery-card" data-id= "{{mystery.id}}">
+        <div class="user-mystery-card" data-id= "{{mystery.id}}">
             {% if mystery.is_approved %}
             <div class="badge-content">
                 <div class="status-badge approved">approved</div>
@@ -28,7 +28,7 @@
         {% endif %}
                 <h2>{{ mystery.title }}</h2>
                 <div class="mystery-details">
-                <img src="{{ mystery.image.url }}" alt="Mystery Image" class="mystery-image">
+                <img src="{{ mystery.image.url }}" alt="Mystery Image" class="user-img">
                 </div>
             <div class="user-mystery-btns">
                 {% if mystery.is_approved %}

@@ -29,6 +29,7 @@ def create(request:HttpRequest):
         form = TheoryForm(request.POST, request.FILES)
         if form.is_valid():
             theory = form.save(commit=False)
+            theory.username = request.user.username
             theory.save()
             return redirect('profile')
     else:
@@ -37,7 +38,7 @@ def create(request:HttpRequest):
 
 def profile(request:HttpRequest):
     user = User.objects.first()
-    mysteries = Theory.objects.filter(author = user.username)
+    mysteries = Theory.objects.filter(username = user.username)
     context = {
         'user': user,
         'mysteries': mysteries

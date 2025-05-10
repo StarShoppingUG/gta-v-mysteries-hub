@@ -67,7 +67,7 @@ function DeleteMystery(){
     deleteBtns.forEach(button => {
         button.addEventListener("click", function (){
             if (!confirm("Are you sure you want to delete this mystery?")) return;
-            const mystery = this.closest(".mystery-card");
+            const mystery = this.closest(".user-mystery-card");
             const mysteryId = mystery.getAttribute("data-id");
             fetch(`/delete-mystery/${mysteryId}`, {
                 method: 'POST',
@@ -80,6 +80,7 @@ function DeleteMystery(){
                         else{
                             alert("Delete failed")
                         }
+                        
                     })
                  }) })
                        

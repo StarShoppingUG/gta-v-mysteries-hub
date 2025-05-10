@@ -305,7 +305,7 @@ body {
     flex-direction: column;
     gap: 1.2rem;
 }
-.mystery-card {
+.mystery-card, .user-mystery-card {
     width: 100%;
     background: var(--card-bg);
     border: 1px solid rgba(0, 255, 0, 0.2);
@@ -328,7 +328,7 @@ body {
     font-style: italic;
     color: var(--primary-color);
 }
-.mystery-card h2{
+.mystery-card h2, .user-mystery-card h2{
     color: var(--primary-color);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
@@ -528,11 +528,13 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.2rem;
 }
-.user-mystery-section .mystery-card img{
-    min-width: 330px;
+.user-mystery-card{
+    max-width: 600px;
+    width: 95vw;
 }
-.user-mystery-section .mystery-card{
-    width: fit-content;
+.user-mystery-card img{
+    width: 90%;
+    max-width: 360px;
 }
 
 .badge-content{
@@ -540,10 +542,12 @@ body {
     gap: 0.5rem;
     align-items: center;
     margin-bottom: 1rem;
+
 }
 .badge-content div:last-child{
     font-style: italic;
     color: rgba(255, 255, 255, 0.7);
+    text-align: center;
 }
 .status-badge {
     white-space: nowrap;
@@ -774,10 +778,6 @@ a:not(.nav-links a):not(.cta-button):hover::after {
         font-size: 2rem;
     }
 
-    .mystery-grid {
-        grid-template-columns: 1fr;
-    }
-
     .hero {
         background-attachment: scroll; /* Better mobile performance */
         min-height: 60vh;
@@ -793,9 +793,12 @@ a:not(.nav-links a):not(.cta-button):hover::after {
     .mystery-card .mystery-details{
         flex-direction: column;
     }
-    .mystery-card img{
-        min-width: 200px;
-        max-width: 500px;
+    .badge-content{
+        gap: 0.3rem;
+        flex-direction: column;
     }
-
+    .mystery-card img{
+        min-width: 100px;
+        max-width: 430px;
+    }
 }

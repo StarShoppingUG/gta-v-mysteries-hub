@@ -80,17 +80,14 @@ WSGI_APPLICATION = 'gtaV.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE':
-        'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3'
-    }
-}
-"""'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',  # fallback to SQLite in root folder
         conn_max_age=600,
-        ssl_require=True)"""
+        ssl_require=os.environ.get('RENDER', '') != ''
+    )
+}
 
 
 # Password validation

@@ -80,15 +80,23 @@ WSGI_APPLICATION = 'gtaV.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',  # fallback to SQLite in root folder
+        default='sqlite:///db.sqlite3')
+}
+
+""", # fallback to SQLite in root folder
         conn_max_age=600,
         ssl_require=os.environ.get('RENDER', '') != ''
     )
+DATABASES = {
+    'default': dj_database_url.config(
+        default='postgresql://gtav_database_6x5y_user:4hdrPnJXM6TVI8CGElfT6bTabf41Dul5@dpg-d0f68tbe5dus738el6lg-a/gtav_database_6x5y',  # use your Render URL here
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
-
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

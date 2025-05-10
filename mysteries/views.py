@@ -38,7 +38,7 @@ def create(request:HttpRequest):
 
 def profile(request:HttpRequest):
     user = User.objects.first()
-    mysteries = Theory.objects.filter(username = request.user.username)
+    mysteries = Theory.objects.filter(username = request.user.username, category ="community")
     context = {
         'user': user,
         'mysteries': mysteries

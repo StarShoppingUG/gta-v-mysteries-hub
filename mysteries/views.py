@@ -29,7 +29,10 @@ def create(request:HttpRequest):
         form = TheoryForm(request.POST, request.FILES)
         if form.is_valid():
             theory = form.save(commit=False)
-            theory.username = request.user.username or 'ghost'
+            if request.user.is_authenticated:
+                theory.username = request.user.username
+            else:
+                theory.username = 'Guest'
             theory.save()
             return redirect('profile')
     else:
@@ -37,10 +40,13 @@ def create(request:HttpRequest):
     return render(request, 'create.html', {'form': form})
 
 def profile(request:HttpRequest):
-    user = User.objects.first()
-    mysteries = Theory.objects.filter(username = request.user.username or 'ghost', category ="community")
+    if request.user.is_authenticated:
+        mysteries = Theory.objects.filter(username = request.user.username, category ="community")
+    else:
+        mysteries = Theory.objects.filter(username = 'Guest', category ="community")
+    
     context = {
-        'user': user,
+        'user': request.user,
         'mysteries': mysteries
     }
     return render(request, 'profile.html', context)

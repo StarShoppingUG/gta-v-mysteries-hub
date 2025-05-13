@@ -8,6 +8,7 @@
     --dark-color: black;
     --theme-color: white;
     --header-footer: black;
+    --navbar: black;
     --neon-glow: 0 0 5px var(--primary-color),
         0 0 10px var(--primary-color);
     --neon-text-glow: 0 0 3px var(--primary-color);
@@ -50,6 +51,7 @@ body.light-mode{
     rgba(24, 240, 24, 0.247),
     rgba(0, 255, 0, 0.3));
     --primary-color: darkgreen;
+    --navbar: rgb(170, 196, 170);
 }
 
 .main-content{
@@ -442,14 +444,15 @@ body.light-mode{
 /* Buttons */
 #toggle-theme{
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 4px;
+    right: 4px;
     font-family: cursive;
     font: bold;
     color: var(--theme-opp);
     background: var(--theme-color);
     border-radius: 10px;
     padding: 4px 4px;
+    font-size: 1rem;
 }
 #toggle-theme:hover{
     cursor: pointer;
@@ -899,17 +902,17 @@ a:not(.nav-links a):not(.cta-button):hover::after {
 
     .nav-links {
         flex-direction: column;
-        background: var(--card-bg);
         gap: 1rem;
         position: fixed;
         right: 0;
         top: 70px;
         padding: 20px;
         border-radius: 10px;
+        opacity: 1;
         visibility: hidden;
-        opacity: 0;
         transition: visibility 0.3s, opacity 0.3s ease;
         border: 2px solid darkgreen;
+        background: var(--navbar);
         
     }
 

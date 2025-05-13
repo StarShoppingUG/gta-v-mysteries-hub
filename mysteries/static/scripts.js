@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     NavigateMystery();
     ReadMore();
     NavigateMysteriesCheats();
+    ToggleNavbar();
+    ToggleTheme();
 
 });
  //toggle mysteries and cheat codes
@@ -124,4 +126,30 @@ function NavigateMysteriesCheats(){
         document.getElementById("cheats-btn").classList.add("mysteries-cheats-selected");
 
     }
+}
+function ToggleNavbar(){
+    const navBtn = document.getElementById("toggle-navbar");
+    const nav = document.querySelector(".nav-links");
+    navBtn.addEventListener("click", function (e){
+        e.stopPropagation();
+        nav.classList.toggle("show");
+    })
+    document.addEventListener("click", (e)=>{
+        if(!nav.contains(e.target) && ! navBtn.contains(e.target)){
+            nav.classList.remove("show")
+        }
+    })
+
+}
+function ToggleTheme(){
+    const btn = document.getElementById("toggle-theme");
+    const body = document.body;
+    if (localStorage.getItem("theme") == "light"){
+        body.classList.add("light-mode");
+    }
+    btn.addEventListener("click", ()=> {
+        body.classList.toggle("light-mode");
+        const theme = body.classList.contains('light-mode') ? 'light' : "dark";
+        localStorage.setItem("theme", theme);
+    })
 }

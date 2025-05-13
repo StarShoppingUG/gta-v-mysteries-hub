@@ -1,61 +1,80 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="csrf-token" content="{{csrf_token}}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="GTA V Mysteries Hub - Explore Hidden Mysteries and Cheat Codes">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{csrf_token}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="GTA V Mysteries Hub - Explore Hidden Mysteries and Cheat Codes"
+    />
     <title>GTA V Mysteries</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}?v=1.0">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+  </head>
+  <body>
+    <button id="toggle-theme">Toggle <br />Theme</button>
     <header>
-        <nav class="main-nav">
-            <div class="nav-logo">
-                <img src="{% static 'images/logo.png'%}" class="logo">
-                <div class="logo-text">
-                    <span>GTA V</span>
-                    <span>MYSTERIES</span>
-                </div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'browse' %}">Mysteries & Cheats</a></li>
-                <li><a href="{% url 'create' %}" >Submit Mystery</a></li>
-                <li><a href="{% url 'profile' %}">Profile</a></li>
-                <li><a href="{% url 'about' %}" >About</a></li>
-            </ul>
-        </nav>
+      <nav class="main-nav">
+        <div class="nav-logo">
+          <img src="{% static 'images/logo.png'%}" class="logo" />
+          <div class="logo-text">
+            <span>GTA V</span>
+            <span>MYSTERIES</span>
+          </div>
+        </div>
+        <div id="toggle-navbar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+          <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'browse' %}">Mysteries & Cheats</a></li>
+            <li><a href="{% url 'create' %}">Submit Mystery</a></li>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+          </ul>
+      </nav>
     </header>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+    <main class="main-content">{% block content %} {% endblock %}</main>
 
     <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>GTA V Mysteries Hub</h3>
-                <p>Explore Hidden Mysteries and Codes</p>
-                
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul class="quick-access-list"> 
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'browse' %}">Browse & Cheats</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                </ul>
-            </div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul class="quick-access-list">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'browse' %}">Browse & Cheats</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+          </ul>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; {% now "Y" %} GTA V Mysteries Hub. | Powered by GhostTeam.</p>
-        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+           
+              <div class="contacts">
+                <a href="#">
+                  <div class="whatsapp-img">
+                    <img src ="{% static 'images/whatsapp.png' %}">
+                </div>
+                <span>+256757000000</span>
+              </a>
+              <a href="#">
+                <div class="insta-img">
+                <img src ="{% static 'images/insta.png' %}">
+              </div>
+                <span>@GhostTeam</span>
+            </a>
+          </div>
+          </div>
+
+          </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {% now "Y" %} GTA V Mysteries Hub. | Powered by GhostTeam.</p>
+      </div>
     </footer>
-    <script src="{% static 'scripts.js' %}">
-    
-    </script>
-</body>
+    <script src="{% static 'scripts.js' %}"></script>
+  </body>
 </html>

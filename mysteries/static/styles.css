@@ -2,12 +2,12 @@
 :root {
     --primary-color: #71e871;
     --secondary-color: #2b6470e3;
-    --dark-bg: #121212;
+    --dark-bg: #272626;
     --card-bg: rgba(0, 0, 0, 0.368);
     --white-color: #ffffff;
     --dark-color: black;
     --theme-color: white;
-    --header-footer: black;
+    --header-footer: rgb(28, 27, 27);
     --navbar: black;
     --neon-glow: 0 0 5px var(--primary-color),
         0 0 10px var(--primary-color);
@@ -402,6 +402,7 @@ body.light-mode{
     background-color: var(--card-bg);
     border-radius: 10px;
     box-shadow: var(--subtle-glow);
+    color: var(--theme-color);
 }
 
 .form-group {
@@ -421,7 +422,7 @@ body.light-mode{
     background: var(--theme-opp);
     border: 1px solid var(--primary-color);
     border-radius: 4px;
-    color: var(--text-color);
+    color: var(--theme-color);
     box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
     transition: all 0.3s ease;
 }

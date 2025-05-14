@@ -8,7 +8,6 @@
     --dark-color: black;
     --theme-color: white;
     --header-footer: rgb(28, 27, 27);
-    --navbar: black;
     --neon-glow: 0 0 5px var(--primary-color),
         0 0 10px var(--primary-color);
     --neon-text-glow: 0 0 3px var(--primary-color);
@@ -49,7 +48,6 @@ body.light-mode{
     --card-bg: rgba(179, 227, 179, 0.872);
     --header-footer: rgba(145, 151, 142, 0.869);
     --primary-color: darkgreen;
-    --navbar: rgb(170, 196, 170);
 }
 
 .main-content{
@@ -911,7 +909,7 @@ a:not(.nav-links a):not(.cta-button):hover::after {
         visibility: hidden;
         transition: visibility 0.3s, opacity 0.3s ease;
         border: 2px solid darkgreen;
-        background: var(--navbar);
+        background: var(--header-footer);
         
     }
 

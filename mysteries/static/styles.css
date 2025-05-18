@@ -44,9 +44,9 @@ body {
 body.light-mode{
     --theme-color: black;
     --theme-opp: white;
-    --dark-bg: #31592b56;
-    --card-bg: rgba(179, 227, 179, 0.872);
-    --header-footer: rgba(145, 151, 142, 0.869);
+    --dark-bg: #15301256;
+    --card-bg: rgba(168, 193, 154, 0.869);
+    --header-footer:  rgba(126, 153, 126, 0.872);
     --primary-color: darkgreen;
 }
 
@@ -897,7 +897,7 @@ a:not(.nav-links a):not(.cta-button):hover::after {
         cursor: pointer;
     }
     #toggle-navbar span {
-        background: var(--theme-color);
+        background: var(--white-color);
         height: 4px;
         border-radius: 20px;
     }

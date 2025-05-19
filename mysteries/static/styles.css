@@ -1034,11 +1034,9 @@ a:not(.nav-links a):not(.cta-button):hover::after {
     background-color: rgb(10, 109, 10);
   }
 .message.success{
-    font-family: cursive;
     color: var(--primary-color);
 }
 .errorlist{
-    font-family: cursive;
     color: red;
 
 }

@@ -1011,6 +1011,7 @@ a:not(.nav-links a):not(.cta-button):hover::after {
     font-family: cursive;
     font-style: italic;
     font-weight: bold;
+    font-size: 1.3rem;
     color: var(--primary-color);
  }
   

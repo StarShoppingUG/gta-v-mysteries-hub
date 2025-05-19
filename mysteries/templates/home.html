@@ -1,6 +1,11 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <section class="hero">
     <div class="hero-content">
+        {% if request.user.is_authenticated %}
+            <h1>Welcome back! {{request.user.username}}</h1>
+        {% else %}
+            <h1>Welcome! Guest</h1>
+        {% endif %}
         <h1>{{ hero_text }}</h1>
         <p class="hero-description">{{ page_description }}</p>
         <div class="cta-buttons">

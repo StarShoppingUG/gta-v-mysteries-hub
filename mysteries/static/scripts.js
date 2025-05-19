@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     NavigateMysteriesCheats();
     ToggleNavbar();
     ToggleTheme();
+    
 
 });
  //toggle mysteries and cheat codes
@@ -78,6 +79,7 @@ function DeleteMystery(){
                     'Content-Type' : 'application/json'}, }).then(response => {
                         if(response.ok){
                             mystery.remove();
+                            location.reload();
                         }
                         else{
                             alert("Delete failed")
@@ -130,6 +132,7 @@ function NavigateMysteriesCheats(){
 function ToggleNavbar(){
     const navBtn = document.getElementById("toggle-navbar");
     const nav = document.querySelector(".nav-links");
+    if(navBtn){
     navBtn.addEventListener("click", function (e){
         e.stopPropagation();
         nav.classList.toggle("show");
@@ -139,6 +142,7 @@ function ToggleNavbar(){
             nav.classList.remove("show")
         }
     })
+}
 
 }
 function ToggleTheme(){

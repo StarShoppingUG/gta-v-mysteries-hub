@@ -1,0 +1,40 @@
+
+{% extends "base.html" %} {% load static %} 
+{% block header %} {% endblock %}
+{% block content %}
+<section class="login-container">
+  <div class="login-box">
+    <div class="login-header">
+    <div class="nav-logo">
+        <img src="{% static 'images/logo.png'%}" class="logo" />
+        <div class="logo-text">
+          <span>GTA V</span>
+          <span>MYSTERIES</span>
+        </div>
+    </div>
+    <p>Explore Hidden Mysteries and Codes</p>
+    <h2 class="login-h2">RESET PASSWORD</h2>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+      <p class="errorlist">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+    <form method="post">
+      {% csrf_token %}
+      <p>
+        <label>Enter your username:</label>
+        <input type="text" name="username" required>
+      </p>
+      <button type="submit" class="cta-button">Continue</button>
+    </form>
+      <a class="cta-button" id ="guest-btn" href="/home">Continue as guest</a>
+      <p>Not a member? &nbsp;<a href="{% url 'register' %}">Create an account</a></p>
+ 
+
+  </div>
+</section>
+  {% endblock %}
+  {% block top_footer %} {% endblock %}
+
+

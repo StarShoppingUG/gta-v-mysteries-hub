@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load static %} 
+{% block content %}
 <section class="profile-container">
   <h2 class="profile-h2">Your profile</h2>
   <section class="profile-card">
@@ -9,10 +10,17 @@
     />
     {% if request.user.is_authenticated %}
     <p class="username">Username: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p>
     <p class="date">Member since: {{ user.date_joined|date:"F j, Y" }}</p>
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="reset-btn">Logout</button>
+    </form>
+    
+    
     {% else %}
-    <p class="username">Welcome, Guest!</p>
+    <p class="username">Welcome! Guest</p>
+
+    <a href="{% url 'login' %}" class="cta-button">Create an account</a>
     {% endif %}
   </section>
   <h2 class="profile-h2">Your Mysteries</h2>

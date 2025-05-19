@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
-from django.contrib.auth.models import User
+from .forms import CustomUserCreationForm, PasswordResetForm
 from .forms import TheoryForm
 from .models import Theory, Developer, CheatCode
+from django.contrib import messages
 from django.http import JsonResponse, HttpResponseNotAllowed
+
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+
 
 def home(request: HttpRequest):
     context = {
@@ -87,3 +92,42 @@ def edit_mystery(request:HttpRequest, id:int):
     else:
         form = TheoryForm(instance=mystery)
     return render(request, "create.html", {'form' : form})
+
+def register(request:HttpRequest):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account created successfully. You can now log in.')
+            return redirect('/')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, "register.html", {"form": form})
+
+def reset_password_start(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        if User.objects.filter(username=username).exists():
+            return redirect('reset_form', username=username)
+        else:
+            messages.error(request, "Account does not exist.")
+    return render(request, 'reset_username.html')
+
+
+def reset_password_form(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return redirect('reset_start')
+
+    if request.method == 'POST':
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            user.password = make_password(form.cleaned_data['new_password'])
+            user.save()
+            messages.success(request, "Password updated. You can now log in.")
+            return redirect('login')
+    else:
+        form = PasswordResetForm()
+
+    return render(request, 'reset_form.html', {'form': form, 'username': username})

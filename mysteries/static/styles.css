@@ -2,10 +2,8 @@
 :root {
     --primary-color: #71e871;
     --secondary-color: #2b6470e3;
-    --dark-bg: #272626;
-    --card-bg: rgba(0, 0, 0, 0.368);
-    --white-color: #ffffff;
-    --dark-color: black;
+    --dark-bg: #2a2c2a;
+    --card-bg: rgba(18, 19, 18, 0.368);
     --theme-color: white;
     --header-footer: rgb(28, 27, 27);
     --neon-glow: 0 0 5px var(--primary-color),
@@ -39,6 +37,9 @@ body {
     margin: 0;
     line-height: 1.6;
     font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 
 }
 body.light-mode{
@@ -51,19 +52,19 @@ body.light-mode{
 }
 
 .main-content{
-    margin-top: 90px;
+    margin-top: 82px;
     max-width: 100vw;
 }
 /* Navigation Styles */
 .main-nav {
     background: var(--header-footer);
-    border-bottom: 2px solid var(--primary-color);
-    padding: 0.8rem 3%;
+    padding: 0.6rem 3%;
     display: flex;
     z-index: 1;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 15px rgba(0, 255, 0, 0.1);
+    border-bottom: 1px solid var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
     position: fixed;
     top: 0;
     width: 100vw;
@@ -123,7 +124,7 @@ body.light-mode{
 }
 
 .nav-links a {
-    color: var(--theme-color);
+    color: white;
     text-decoration: none;
     font-size: 1.1rem;
     font: bold;
@@ -167,10 +168,15 @@ body.light-mode{
 
 /* Footer */
 .site-footer {
+    align-self: flex-end;
+    justify-self: flex-end;
     background: var(--header-footer);
     color: var(--theme-color);
     padding: 1rem 0;
-    margin-top: 4rem;
+    margin-top: auto;
+    border-top: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 10px var(--primary-color);
+    width: 100vw;
 }
 
 .footer-content {
@@ -180,13 +186,14 @@ body.light-mode{
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgb(73, 68, 68);
 }
 
 .footer-bottom {
     text-align: center;
     margin-top: 1rem;
-    border-top: 2px solid var(--primary-color);
-    box-shadow: 0 2px 15px rgba(0, 255, 0, 0.1);
+    
 
 }
 
@@ -194,23 +201,25 @@ body.light-mode{
 .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
         url('/static/images/gtaV.png');
-    color: var(--white-color);
+    color: white;
     background-size: cover;
     background-position-y: 80px;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 74vh;
+    min-height: 78vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 2rem;
+
 }
 
 .home-content-container {
     max-width: 1200px;
     margin: auto;
     padding: 10px;
+    padding-top: 0;
     color: var(--theme-color);
 }
 
@@ -225,7 +234,7 @@ body.light-mode{
     width: 100%;
     background: var(--card-bg);
     border: 1px solid rgba(0, 255, 0, 0.2);
-    box-shadow: var(--subtle-glow);
+    box-shadow: 0 0 5px var(--primary-color);
     border-radius: 10px;
     padding: 1.5rem;
 }
@@ -234,7 +243,7 @@ body.light-mode{
 .quick-access {
     background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
         url('/static/images/los-santos.png');
-    color: var(--white-color);
+    color: white;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -242,7 +251,9 @@ body.light-mode{
     border-radius: 10px;
     text-align: center;
     margin-top: 2rem;
-    box-shadow: var(--subtle-glow);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 5px var(--primary-color);
+    margin-bottom: 4rem;
 }
 
 .quick-access h2 {
@@ -289,6 +300,7 @@ body.light-mode{
 
 #mysteries-container {
     margin: 1.5rem 0;
+    margin-bottom: 4rem;
 }
 
 #cheats-container {
@@ -320,7 +332,8 @@ body.light-mode{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     max-width: 720px;
     background-color: var(--card-bg);
-    box-shadow: var(--subtle-glow);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 5px var(--primary-color);
     margin: 10px auto;
     padding: 20px 11px;
     border-radius: 20px;
@@ -357,7 +370,7 @@ body.light-mode{
     width: 100%;
     background: var(--card-bg);
     border: 1px solid rgba(0, 255, 0, 0.2);
-    box-shadow: var(--subtle-glow);
+    box-shadow: 0 0 5px var(--primary-color);
     border-radius: 10px;
     padding: 1.5rem;
 }
@@ -389,8 +402,8 @@ body.light-mode{
 
 /* Crete page Form */
 .create-container {
-    padding: 0.5rem;
-    padding-top: 4rem;
+    padding: 4rem 0.5rem;
+    padding-top: 2rem
 }
 
 .form-container {
@@ -399,7 +412,8 @@ body.light-mode{
     padding: 2rem;
     background-color: var(--card-bg);
     border-radius: 10px;
-    box-shadow: var(--subtle-glow);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 5px var(--primary-color);
     color: var(--theme-color);
 }
 
@@ -450,6 +464,7 @@ body.light-mode{
     border-radius: 10px;
     padding: 4px 4px;
     font-size: 1rem;
+    z-index: 1000;
 }
 #toggle-theme:hover{
     cursor: pointer;
@@ -490,7 +505,6 @@ body.light-mode{
     width: 80%;
 }
 
-
 .reset-btn {
     background: linear-gradient(45deg, rgb(142, 36, 36), rgba(4, 65, 4, 0.744));
     border: 1px solid red;
@@ -500,18 +514,17 @@ body.light-mode{
     letter-spacing: 2px;
     position: relative;
     overflow: hidden;
-    color: var(--dark-bg);
+    color: white;
     padding: 0.8rem 1.2rem;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s;
     text-decoration: none;
     display: inline-block;
-    color: var(--white-color);
     margin: 3px;
 }
 .hero-content .cta-buttons .cta-button{
-    color: var(--white-color);
+    color: white;
 }
 .cta-button::before,
 .submit-btn::before,
@@ -554,6 +567,7 @@ body.light-mode{
     margin: auto;
     padding: 1rem;
     color: var(--theme-color);
+    margin-bottom: 4rem;
 }
 
 .profile-h2 {
@@ -565,7 +579,8 @@ body.light-mode{
     border-radius: 20px;
     padding: 2rem;
     text-align: center;
-    box-shadow: var(--subtle-glow);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 5px var(--primary-color);
     max-width: 600px;
     margin: auto;
 }
@@ -697,13 +712,15 @@ body.light-mode{
     margin: auto;
     padding: 10px;
     color: var(--theme-color);
+    margin-bottom: 4rem;
 }
 
 .mission-section {
     border-radius: 20px;
     padding: 4rem 2rem;
     background: var(--card-bg);
-    box-shadow: var(--subtle-glow);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 5px var(--primary-color);
 
 }
 
@@ -719,18 +736,19 @@ body.light-mode{
     background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 8px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 5px var(--primary-color);
     text-align: center;
 }
 
 /* Team Section Styles */
 .team-section {
-    padding: 4rem 0;
+    padding-top: 2rem;
 }
 
 .team-section h2 {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .developers-grid {
@@ -744,7 +762,8 @@ body.light-mode{
     background: var(--card-bg);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: var(--subtle-glow);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 5px var(--primary-color);
     min-height: 600px;
 
 
@@ -897,7 +916,7 @@ a:not(.nav-links a):not(.cta-button):hover::after {
         cursor: pointer;
     }
     #toggle-navbar span {
-        background: var(--white-color);
+        background: white;
         height: 4px;
         border-radius: 20px;
     }
@@ -955,4 +974,75 @@ a:not(.nav-links a):not(.cta-button):hover::after {
         min-width: 100px;
         max-width: 430px;
     }
+}
+/* login page */
+.login-container{
+    padding: 1rem;
+    height: 100%;
+    position: relative;
+    top: -80px;
+}
+.login-box {
+    background: var(--card-bg);
+    padding: 1.1rem;
+    color: var(--theme-color);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 5px var(--primary-color);
+    margin: 0 auto;
+    max-width: 800px;
+  }
+.login-box #guest-btn{
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(75, 118, 75);
+}
+ .login-header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+ }
+ .login-header p{
+    font-family: cursive;
+    font-style: italic;
+    font-weight: bold;
+    color: var(--primary-color);
+ }
+  
+.login-box form input{
+    width: 100%;
+    background: rgb(203, 224, 203);
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 2px solid darkgreen;
+    box-shadow: 0 0 5px var(--primary-color);
+    border-radius: 0.5rem;
+  }
+  
+.login-box form button {
+    width: 100%;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+    font-family:'Times New Roman', Times, serif;
+    background-color: rgb(10, 109, 10);
+  }
+.message.success{
+    font-family: cursive;
+    color: var(--primary-color);
+}
+.errorlist{
+    font-family: cursive;
+    color: red;
+
+}
+.login-h2{
+    margin: 0 auto;
+    color: var(--primary-color)
 }
